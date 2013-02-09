@@ -14,7 +14,12 @@ end
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
-  flunk "Unimplemented"
+  
+  e1Index = page.body.index(e1)
+  e2Index = page.body.index(e2)   
+  
+  e1Index.should < e2Index
+  
 end
 
 Then /I should see all of the movies/ do
