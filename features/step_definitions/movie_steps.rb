@@ -17,6 +17,20 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   flunk "Unimplemented"
 end
 
+Then /I should see all of the movies/ do
+  #  ensure that that e1 occurs before e2.
+  #  page.body is the entire content of the page as a string.
+  rows = page.all('table#movies tbody tr').count
+  rows.should == Movie.find(:all).length
+end
+
+Then /I should see none of the movies/ do
+  #  ensure that that e1 occurs before e2.
+  #  page.body is the entire content of the page as a string.
+  rows = page.all('table#movies tbody tr').count
+  rows.should == 0
+end
+
 # Make it easier to express checking or unchecking several boxes at once
 #  "When I uncheck the following ratings: PG, G, R"
 #  "When I check the following ratings: G"
